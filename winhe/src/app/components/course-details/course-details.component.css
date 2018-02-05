@@ -1,0 +1,42 @@
+
+.parallax {
+    /* The image used */
+    background-color:rgb(28, 48, 85);
+    
+
+    /* Set a specific height */
+    height: 300px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron {
+    background: rgb(200, 54, 54); /* This is for ie8 and below */
+    background: rgba(200, 54, 54, 0); 
+    color: white;
+    height:300px;
+ }
+
+ .card-r{
+    width: 30rem;
+   
+
+ }
+ .checked {
+    color: orange;
+}
+
+ul.tick {
+    list-style-image: url('../../../assets/img/tick.jpg');
+    
+}
+
+.centered {
+    position: fixed; /* or absolute */
+    top: 25%;
+    left: 65%;
+  }

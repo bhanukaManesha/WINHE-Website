@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+
+
+
+  
+    <div class="parallax">
+        <br><br><br><br><br><br><br><br>
+        <div class="jumbotron">
+            <div class="container"><h1 class="display-2" style="color: white;text-align:center;font-size:5.5em;font-weight:bolder;">Choose Your Path Today!</h1></div>
+            
+            <hr class="my-4">
+            <br><br><br>
+           <div class="row" style="margin-left:100px;">
+              
+            <div class="col-3 text-shadow-true" *ngFor="let course of courses">
+              <a class="btn btn-primary btn-lg text-shadow-false" href="#" role="button"><h1>{{ course }}</h1></a>
+            </div>
+        </div>
+          </div>
+    </div>
+
+
+ 
+
+
+
+<br>
+<div class="container-fluid">
+   <div class="container"> <h3 style="display:block;text-align :center">View All Courses</h3>
+   <br>
+
+    <div class="row">
+  
+        <div class="col-4" *ngFor="let coursedetail of coursedetails">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="../../../assets/img/course-resize.jpg" alt="Card image cap">
+                <div class="card-block">
+                  <h4 class="card-title">{{ coursedetail.name }}</h4>
+                  <div>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked" ></span>
+                        <span class="fa fa-star"></span>
+                        <span class=""> 3.7 </span>
+                        
+                        <span class="">(53,625 ratings)  </span>
+                        <br>
+                        <span class="">230,304 students enrolled </span>
+                        <hr>
+          
+                    </div>
+                  <p class="card-text">{{ coursedetail.shtdescription }} </p>
+                  <a  routerLink="/course/{{ coursedetail.shtname }}" class="btn btn-primary">View Details</a>
+                  </div>
+              </div>
+            </div>
+           
+    </div>
+    <br>  
+  </div>
+
+</div>
+
+

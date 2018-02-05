@@ -1,0 +1,26 @@
+.progress{
+    background-color:lightgrey;
+    margin-bottom: 10px;
+}
+
+.progress-bar{
+    padding-bottom: 10px;
+    height: 1.5rem;
+
+}
+
+.checked {
+    color: orange;
+}
+
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    font-size: 3em;
+    color: #fff;
+    text-align: center;
+    background: rgb(22, 143, 190);
+    padding-top:22px; 
+    margin-left: 20px;
+  }
