@@ -12,7 +12,7 @@
             <br><br><br>
            <div class="row" style="margin-left:100px;">
               
-            <div class="col-3 text-shadow-true" *ngFor="let course of courses">
+            <div class="col-3 text-shadow-true" *ngFor="let course of mainCourse">
               <a class="btn btn-primary btn-lg text-shadow-false" href="#" role="button"><h1>{{ course }}</h1></a>
             </div>
         </div>
@@ -31,11 +31,11 @@
 
     <div class="row">
   
-        <div class="col-4" *ngFor="let coursedetail of coursedetails">
+        <div class="col-4" *ngFor="let course of courses">
             <div class="card" style="width: 20rem;">
                 <img class="card-img-top" src="../../../assets/img/course-resize.jpg" alt="Card image cap">
                 <div class="card-block">
-                  <h4 class="card-title">{{ coursedetail.name }}</h4>
+                  <h4 class="card-title">{{ course.name }}</h4>
                   <div>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -46,12 +46,12 @@
                         
                         <span class="">(53,625 ratings)  </span>
                         <br>
-                        <span class="">230,304 students enrolled </span>
+                        <span class="">{{course.total_students}} students enrolled </span>
                         <hr>
           
                     </div>
-                  <p class="card-text">{{ coursedetail.shtdescription }} </p>
-                  <a  routerLink="/course/{{ coursedetail.shtname }}" class="btn btn-primary">View Details</a>
+                  <p class="card-text" style="word-wrap:break-word;">{{ course.short_description }} </p>
+                  <a  routerLink="/course/{{ course.short_name }}" class="btn btn-primary">View Details</a>
                   </div>
               </div>
             </div>

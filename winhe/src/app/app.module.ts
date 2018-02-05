@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http'
+import { FormsModule } from '@angular/forms';
+
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './includes/navbar/navbar.component';
@@ -13,13 +17,24 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { FooterComponent } from './includes/footer/footer.component';
 import { FeedbackComponent } from './includes/feedback/feedback.component';
 
+import { CourseService } from './services/course.service';
+import { SessionService } from './services/session.service';
+import { LecturerService } from './services/lecturer.service';
+import { FeedbackService } from './services/feedback.service';
+
+import { LoginComponent } from './admin/login/login.component';
+import { IndexComponent } from './admin/index/index.component';
+import { AdminnavbarComponent } from './admin/includes/adminnavbar/adminnavbar.component';
+
 const appRoutes:Routes = [
   {path:'',component:HomeComponent},
   {path:'courses',component:CoursesComponent},
-  {path:'course/: name',component:CourseDetailsComponent},
+  {path:'course/:name',component:CourseDetailsComponent},
   {path:'contactus',component:ContactusComponent},
   {path:'news',component:NewsComponent},
-  {path:'careers',component:CareersComponent}
+  {path:'careers',component:CareersComponent},
+  {path:'admin',component:IndexComponent},
+  {path:'admin/:page',component:IndexComponent}
 ]
 @NgModule({
   declarations: [
@@ -32,13 +47,19 @@ const appRoutes:Routes = [
     ContactusComponent,
     CourseDetailsComponent,
     FooterComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    LoginComponent,
+    IndexComponent,
+    AdminnavbarComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpModule,
+    FormsModule,
+    
   ],
-  providers: [],
+  providers: [CourseService,SessionService,LecturerService,FeedbackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

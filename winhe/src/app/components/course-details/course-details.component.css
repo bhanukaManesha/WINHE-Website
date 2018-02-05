@@ -22,10 +22,26 @@
  }
 
  .card-r{
-    width: 30rem;
+    width:100%;
+    
+
+
    
 
  }
+
+
+ .user {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  
  .checked {
     color: orange;
 }
@@ -35,8 +51,3 @@ ul.tick {
     
 }
 
-.centered {
-    position: fixed; /* or absolute */
-    top: 25%;
-    left: 65%;
-  }

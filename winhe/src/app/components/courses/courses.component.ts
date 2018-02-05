@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CourseService } from '../../services/course.service';
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -8,25 +10,27 @@ import { Component, OnInit } from '@angular/core';
 export class CoursesComponent implements OnInit {
 
 
-  courses: string[];
+  mainCourse:any[]=[];
+  courses: any[];
   coursedetails: any[];
 
-  coursedetail = {
-    id:1,
-    shtname:"java-associate",
-    name:"Java Associate",
-    shtdescription: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
-    imgPath : "../../../assets/img/course-resize.jpg"
-  }
+  constructor(public courseService:CourseService,) {
+    this.mainCourse = ["Java","PHP","C#","ASP.NET"];
 
-  constructor() {
-    this.courses = ["Java","PHP","C#","ASP.NET"];
-
-    this.coursedetails = [this.coursedetail,this.coursedetail,this.coursedetail,this.coursedetail,this.coursedetail,this.coursedetail,this.coursedetail];
-   
+    this.loadCourses();
    }
 
   ngOnInit() {
   }
 
+  loadCourses(){
+    this.courseService.getCourses().subscribe(courses => {
+        
+      this.courses = courses.courses;
+
+  });
+
 }
+
+}
+

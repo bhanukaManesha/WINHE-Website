@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="container">
+    <br><br>
+    <ng-template [ngIf]="login ==0">
+        <div class="alert alert-info" role="alert">
+            Please enter your email address and password to Login to the system.
+          </div>
+    </ng-template>
+    <ng-template [ngIf]="login ==1">
+        <div class="alert alert-warning" role="alert">
+            Incorrect Email. Please enter the correct email.
+          </div>
+    </ng-template>
+    <ng-template [ngIf]="login ==2">
+        <div class="alert alert-danger" role="alert">
+            Incorrect Password. Please enter the correct password.
+          </div>
+    </ng-template>
+    
+      <br>
+    <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" (blur)="onEmailBlur()" [(ngModel)] = "email">
+                  </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" name="password" (blur)="onPasswordBlur()" [(ngModel)] = "password">
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()" >Login</button>
+      </form>
+
+
+    </div>
+
+</div>

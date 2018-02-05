@@ -80,81 +80,181 @@
         </div>
       </div>
 
-      <div>
+      <div *ngFor="let review of reviews; let i = index">
         <br>
         <hr>
         <div class="row">
             <div class="col-4">
-                <div class="circle">BG</div>
+                <div class="circle">{{ review.first_name.toUpperCase().charAt(0)}}{{ review.last_name.toUpperCase().charAt(0)}}</div>
             </div>
-            
-
 
             <div class="col-8">
+                    <ng-template [ngIf]="review.stars == 0">
+                            <span class="fa fa-star" style="font-size:1em;"></span>
+                            <span class="fa fa-star" style="font-size:1em;"></span>
+                            <span class="fa fa-star" style="font-size:1em;"></span>
+                            <span class="fa fa-star" style="font-size:1em;"></span>
+                            <span class="fa fa-star" style="font-size:1em;"></span>
+                        </ng-template>
+
+                    <ng-template [ngIf]="review.stars == 1">
+                            <span class="fa fa-star checked" style="font-size:1em;"></span>
+                            <span class="fa fa-star " style="font-size:1em;"></span>
+                            <span class="fa fa-star " style="font-size:1em;"></span>
+                            <span class="fa fa-star " style="font-size:1em;"></span>
+                            <span class="fa fa-star" style="font-size:1em;"></span>
+                        </ng-template>
+
+                    <ng-template [ngIf]="review.stars == 2">
+                            <span class="fa fa-star checked" style="font-size:1em;"></span>
+                            <span class="fa fa-star checked" style="font-size:1em;"></span>
+                            <span class="fa fa-star " style="font-size:1em;"></span>
+                            <span class="fa fa-star " style="font-size:1em;"></span>
+                            <span class="fa fa-star" style="font-size:1em;"></span>
+                        </ng-template>     
+                        <ng-template [ngIf]="review.stars == 3">
+                                <span class="fa fa-star checked" style="font-size:1em;"></span>
+                                <span class="fa fa-star checked" style="font-size:1em;"></span>
+                                <span class="fa fa-star checked" style="font-size:1em;"></span>
+                                <span class="fa fa-star " style="font-size:1em;"></span>
+                                <span class="fa fa-star" style="font-size:1em;"></span>
+                            </ng-template>         
                 
+                    <ng-template [ngIf]="review.stars == 4">
+                            <span class="fa fa-star checked" style="font-size:1em;"></span>
+                            <span class="fa fa-star checked" style="font-size:1em;"></span>
+                            <span class="fa fa-star checked" style="font-size:1em;"></span>
+                            <span class="fa fa-star checked" style="font-size:1em;"></span>
+                            <span class="fa fa-star" style="font-size:1em;"></span>
+                        </ng-template>
+
+                <ng-template [ngIf]="review.stars == 5">
+                    <span class="fa fa-star checked" style="font-size:1em;"></span>
+                    <span class="fa fa-star checked" style="font-size:1em;"></span>
+                    <span class="fa fa-star checked" style="font-size:1em;"></span>
+                    <span class="fa fa-star checked" style="font-size:1em;"></span>
+                    <span class="fa fa-star checked" style="font-size:1em;"></span>
+                </ng-template>
 
                 <div>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
-                    <span class="fa fa-star" style="font-size:1em;"></span>
-                </div>
-
-                <div>
-                    <h4>Bhanuka Gamage</h4><p> a month ago</p>
+                    <h4>{{review.first_name}} {{review.last_name}}</h4><p> {{review_date[i]}}</p>
                   </div>
 
                   <div>
-                      <p>This course is worth many thousands of dollars. I was totally new in programming and in IT generally before I took the course. I finished it in 2017, now in the market is demand for React skill. But despite that, all the basic knowledge gained in course is incredibly useful. I created some simple websites for myself, for friends, I can show little portfolio for a company I apply for work/ practice.
-                        <br><br>
-                          Some stuff were advanced, especially for total beginner like me. I watched lectures many times until I got the point. Best thing is that you have lifetime access, so you can always rewind different subjects.
-                          <br><br>
-                          I couldn't be happier for buying this course.
-                          <br><br>
-                          In Lithuania, similar courses (actually, with way less topics) cost 700-900 Eur. Here, you can find amazing web development education for just a few dollars.</p>
+                      <p style="text-align: justify">{{ review.description}}</p>
                     </div>
+                <ng-template [ngIf]="reviewedArray[i]?.ishelpful == false">
+                        <div style="cursor:pointer; color:gray;display:inline" (click)="helpful(review.id,i)">
+                                <i class="fa fa-thumbs-o-up"></i> Helpful?
+                            </div>
+                </ng-template>
+                <ng-template [ngIf]="reviewedArray[i]?.ishelpful == true">
+                        <div style="cursor:pointer; color:blue; display:inline" (click)="helpful(review.id)">
+                                <i class="fa fa-thumbs-o-up"></i>
+                            </div>
+                </ng-template>
 
-
-
-            </div>
-
-        </div>
-
-        <br>
-        <hr>
-        <div class="row">
-            <div class="col-4">
-                <div class="circle">TR</div>
-            </div>
-            
-
-
-            <div class="col-8">
-                
-
-                <div>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
-                    <span class="fa fa-star checked" style="font-size:1em;"></span>
+                <div style="cursor:pointer; color:gray;display:inline" class="pull-right" (click)="launchReviewModal(review.id)">
+                    <i class="fa fa-trash-o"></i>
                 </div>
 
-                <div>
-                    <h4>Themiya Ranasinghe</h4><p> two months ago</p>
-                  </div>
-
-                  <div>
-                      <p>Colt's course was incredibly comprehensive, he made it enjoyable, and I still go back to it for reference purposes.</p>
-                  
-                  </div>
-
-
-
             </div>
 
         </div>
 
+       
+        
+
 
         </div>
+
+        <hr>
+        <div class="row" style="background-color:whitesmoke;padding:15px;">
+           <div class="col">
+               <div class="row">
+                   <div class="col">
+                       <h5 style="text-align:center">Add Feedback</h5><br>
+                   </div>
+               </div>
+                <form>
+                <div class="row">
+                    <div class="col">
+                        <div style="text-align:center">
+                            <span class="fa fa-star " [ngClass]="{'checked': stars.one }" style="font-size:3em;cursor: pointer;" (click)=addRating(1)></span>
+                            <span class="fa fa-star " [ngClass]="{'checked': stars.two }" style="font-size:3em;cursor: pointer;" (click)=addRating(2)></span>
+                            <span class="fa fa-star " [ngClass]="{'checked': stars.three }"style="font-size:3em;cursor: pointer;" (click)=addRating(3)></span>
+                            <span class="fa fa-star " [ngClass]="{'checked': stars.four }"style="font-size:3em;cursor: pointer;" (click)=addRating(4)></span>
+                            <span class="fa fa-star " [ngClass]="{'checked': stars.five }" style="font-size:3em;cursor: pointer;" (click)=addRating(5)></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="First name" [(ngModel)]="formData.first_name" name="name">  
+                            </div>
+                </div>
+                 <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="formData.last_name" name="name">    
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" [(ngModel)]="formData.user_email" name="name"> 
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="row">  
+                <div class="col">
+                        <div class="form-group">
+                                
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Review" [(ngModel)]="formData.description" name="name"></textarea>
+                              </div>
+                </div>       
+                </div>
+                <div class="row">
+                        <button type="button" class="btn btn-success btn-lg ml-auto" (click)="submitReview()"><i class="fa fa-plus"></i> Add Feedback</button>
+                </div>
+            </form>
+           </div>
+
+        </div>
+ <!-- Modal -->
+<div class="modal fade" id="removeReview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Remove a Review</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                    <h4>You need admin privilages to remove a review.</h4> <small>Enter admin email and password.</small>
+                    <br><br>
+                    <div class="container">
+                            <form>
+                                    <div class="form-group">
+                                      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="reviewAdmin.email" name="email">
+                                    </div>
+                                    <div class="form-group">
+                                      <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="reviewAdmin.password" name="password">
+                                    </div>
+                                  </form>
+                    </div>
+            </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="removeReview()">Remove Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
